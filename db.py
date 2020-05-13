@@ -4,7 +4,7 @@ import pymongo
 
 from requests import Request
 from redis import StrictRedis
-from settings_1 import REDIS_CONN, REDIS_KEY, TIMEOUT, MYSQL_CONN, MONGO_CONN
+from settings import REDIS_CONN, REDIS_KEY, TIMEOUT, MYSQL_CONN, MONGO_CONN
 
 
 class TianMaoRequest(Request):
