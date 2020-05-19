@@ -78,8 +78,9 @@ class SpiderFather:
                         if isinstance(result, TianMaoRequest):
                             self.queue.add(result)
                         if isinstance(result, dict):
-                            self.mysql.insert(MYSQL_TABLE, result)
-                            # pass
+                            # print(result)
+                            # self.mysql.insert(MYSQL_TABLE, result)
+                            pass
                 else:
                     self.error(tmall_request)
             else:
@@ -91,60 +92,75 @@ class SpiderFather:
 
 
 class TianMaoSpider(SpiderFather):
-    params = {
-        "auctionNumId": 609686548905,
-        'userNumId': 2888885899,
-        'currentPageNum': 1,
-        'callback': 'jsonp_tbcrate_reviews_list',
-        "orderType": "feedbackdate"
-    }
+    # taobao
     # params = {
-    #     "itemId": "529565826078",
-    #     "sellerId": "1105025069",
-    #     "currentPage": 1,
-    #     "callback": "jsonp2917",
+    #     "auctionNumId": 609686548905,
+    #     'userNumId': 2888885899,
+    #     'currentPageNum': 1,
+    #     'callback': 'jsonp_tbcrate_reviews_list',
+    #     "orderType": "feedbackdate"
     # }
+    # small
+    params = {
+        "itemId": "614807100934",
+        "sellerId": "2207546970340",
+        "currentPage": 1,
+        "callback": "jsonp961",
+    }
+    # small
+    url = 'https://rate.tmall.com/list_detail_rate.htm'
 
-    # url = 'https://rate.tmall.com/list_detail_rate.htm'
-    url = 'https://rate.taobao.com/feedRateList.htm'
+    # taobao
+    # url = 'https://rate.taobao.com/feedRateList.htm'
     headers = {
         "referer": "https://item.taobao.com/item.htm?spm=a21ag.11815245.0.0.166650a5lNrw5d&id=602934064500",
         "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.129 Safari/537.36",
-        'cookie': '_samesite_flag_=true; cookie2=197204d89b811e7032ee2ec24faab2f1; t=f00c7cc2057f74996a9ee6848b152f8f; _tb_token_=5eb136153fb89; hng=CN%7Czh-CN%7CCNY%7C156; thw=cn; enc=a3QYWM2193KKQGSPRDOSk1Co%2FB5ZkiwgN5fMDESOA2pmSrH8UK1IU7mPhN42cHPYCPaWtzW15TsztQdEEM9cVQ%3D%3D; UM_distinctid=17208a86f75306-0066be0c184d45-d373666-144000-17208a86f765a8; _m_h5_tk=fc2a8c1dc347026f3d2ecd7ecfff28f7_1589293820091; _m_h5_tk_enc=13ddee0f52bf1f53399346c72a00079b; cna=hIU+FwjXu1ACAXr3v+ExOn8B; v=0; sgcookie=Eq8ItydCo8QiUp%2F%2FkQiLz; unb=2647741626; uc3=vt3=F8dBxGXEmSE1wjwSjBc%3D&id2=UU6lSsVzSQr4dQ%3D%3D&lg2=UIHiLt3xD8xYTw%3D%3D&nk2=saDP0XwOr7Dno1yn; csg=f7760f1b; lgc=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; cookie17=UU6lSsVzSQr4dQ%3D%3D; dnk=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; skt=fa8d5968cbebea14; existShop=MTU4OTI4NjkyNw%3D%3D; uc4=nk4=0%40s8WPMo5F5rAibkF75DMF87TdAhLhVMQ%3D&id4=0%40U2xo%2Bvmd%2BvRtFNxpw09spJV8h%2Fhb; tracknick=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; _cc_=Vq8l%2BKCLiw%3D%3D; _l_g_=Ug%3D%3D; sg=%E5%A4%B463; _nk_=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; cookie1=W5%2FQVXrhb2qJGOA9xJYKLLZ6qZhtRFPY6UpnGf5tgy0%3D; tfstk=c2jfBwOtSjcfntjq41wy7GTjHvxNZkNWErOAhamvG-o7NpBfi0neOgpFSbmJJL1..; uc1=cookie16=VFC%2FuZ9az08KUQ56dCrZDlbNdA%3D%3D&cookie21=UtASsssmeW6lpyd%2BB%2B3t&cookie15=UtASsssmOIJ0bQ%3D%3D&existShop=false&pas=0&cookie14=UoTUM2LG4ZwZ2A%3D%3D; mt=ci=46_1; x5sec=7b22726174656d616e616765723b32223a226466653338313239356432333062306538396232353932623931643633353536434a537736765546454c4433693862647739486939674561444449324e4463334e4445324d6a59374d513d3d227d; l=eBOmI5RPQl3FUEN3BO5Zhurza77TBBRf1sPzaNbMiInca1k5iLv6KNQc7mSHrdtjgt5bCetzEdARfRUDSj438xTjGO0qOC0eQMpe8e1..; isg=BCcnBHUPNYTdkrEIhfSFSYE6tlvxrPuOfwzMhPmSubfY6ESqAX-H3wCuCuj2ANMG'
+        'cookie': 't=40899284e69b2da11e7b289c531d6554; _tb_token_=ef8dfebe1b3be; cookie2=121a6a255f71743d98afe9ce943d9be2; cna=OKNKF0o9TnQCAT2ZFcPEJIUs; dnk=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; tracknick=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; lid=%E4%B8%80%E7%9B%B4%E6%B0%B8%E8%BF%9C%E4%B8%AB%E5%A4%B4; _l_g_=Ug%3D%3D; unb=2647741626; lgc=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; cookie1=W5%2FQVXrhb2qJGOA9xJYKLLZ6qZhtRFPY6UpnGf5tgy0%3D; login=true; cookie17=UU6lSsVzSQr4dQ%3D%3D; _nk_=%5Cu4E00%5Cu76F4%5Cu6C38%5Cu8FDC%5Cu4E2B%5Cu5934; sgcookie=EWQIk3SLYKD3gDn6Z%2FHng; sg=%E5%A4%B463; enc=94KfDFnqvkwYWWcVs7UYFa7g15KHy9zvWj0twySMTHUzjVIhz9BRdsXlrvQ4Q6Z0Z3fHBNaYmZq1uDGHlfWDFA%3D%3D; _m_h5_tk=55240510f0ce66ad5054e6e7bc98b182_1589896604785; _m_h5_tk_enc=fd62c18df149b4bd2d0377f9a49892c0; uc1=cookie21=U%2BGCWk%2F7p4mBoUyS4E9C&existShop=false&cookie16=Vq8l%2BKCLySLZMFWHxqs8fwqnEw%3D%3D&pas=0&cookie15=VFC%2FuZ9ayeYq2g%3D%3D&cookie14=UoTUM2ji1muPYw%3D%3D; uc3=lg2=W5iHLLyFOGW7aA%3D%3D&nk2=saDP0XwOr7Dno1yn&vt3=F8dBxGZuEXfVY6WJYuc%3D&id2=UU6lSsVzSQr4dQ%3D%3D; uc4=nk4=0%40s8WPMo5F5rAibkF75DMF87TXp6hQnYM%3D&id4=0%40U2xo%2Bvmd%2BvRtFNxpw09srn341yo6; csg=229f818d; x5sec=7b22726174656d616e616765723b32223a22646632373334383761623363313066613734616465623036656663343933393343506d4d6a2f5946454e6d63303637656a652f6259426f4d4d6a59304e7a63304d5459794e6a7378227d; l=eBSJZq3nQZD3ay9MBO5Z-urza77TedOfcsPzaNbMiInca1rlwis9BNQDibikkdtjgtfEJetzEdARfR3k-tUKgZqhuJ1REpZwncJw-; isg=BPT0L0qUFuTMS4Ko_21A1H4jxbJmzRi3cH0ffY5Yv37Y-ZxDttygR9x_eTEhAVAP'
     }
 
     def parse_index(self, response):
         try:
-            req = response.content.decode('utf-8')[29:-2]
+            req = response.content.decode('utf-8')[11:-1]
+            print(req)
             req = json.loads(req)
         except Exception:
             raise ArithmeticError
-        # results = req.get("rateDetail").get("rateList")
-        results = req.get("comments")
+        # small
+        results = req.get("rateDetail").get("rateList")
+
+        # taobao
+        # results = req.get("comments")
 
         for result in results:
-            yield {
-                "auctionSku": result.get("auction").get('sku'),
-                "rateContent": result.get("content"),
-                "rateDate": result.get("date")
-            }
+            # taobao
             # yield {
-            #     "auctionSku": result.get("content"),
-            #     "rateContent": result.get("rateContent"),
+            #     "auctionSku": result.get("auction").get('sku'),
+            #     "rateContent": result.get("content"),
             #     "rateDate": result.get("date")
             # }
 
-        # paginator = req.get('rateDetail').get("paginator")
-        # page = paginator.get("page")
-        # print(page)
-        # lastPage = paginator.get("lastPage")
-        page = req.get("currentPageNum")
-        lastPage = req.get('maxPage')
-        print("page:",page, "lastpage:", lastPage)
+            # small
+            yield {
+                "auctionSku": result.get("auctionSku"),
+                "rateContent": result.get("rateContent"),
+                "rateDate": result.get("rateDate")
+            }
+
+        paginator = req.get('rateDetail').get("paginator")
+        # small
+        page = paginator.get("page")
+        lastPage = paginator.get("lastPage")
+
+        # taobao
+        # page = req.get("currentPageNum")
+        # lastPage = req.get('maxPage')
         if page < lastPage:
             params = self.params
-            # params['currentPage'] = page + 1
-            params['currentPageNum'] = page + 1
+            # samll
+            params['currentPage'] = page + 1
+
+            # taobao
+            # params['currentPageNum'] = page + 1
             request = TianMaoRequest(url=self.url, callback=self.parse_index, need_proxy=NEED_PROXY, headers=self.headers,
                                      params=params)
             yield request
