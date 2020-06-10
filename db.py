@@ -41,7 +41,7 @@ class MySQL:
     def __init__(self):
         try:
             self.db = pymysql.connect(**MYSQL_CONN)
-            self.cursor = self.db.cursor()
+            self.cursor = self.db.cursor(pymysql.cursors.DictCursor)
         except pymysql.MySQLError as e:
             print("mysql error:",e.args)
 
@@ -55,6 +55,19 @@ class MySQL:
         except pymysql.MySQLError as e:
             print("mysql insert error",e.args)
             self.db.rollback()
+
+    def insert_many(self, table, data):
+        result = data[0]
+        keys = ", ".join('`{}`'.format(k) for k in result.keys())
+        values = ', '.join('%({})s'.format(k) for k in result.keys())
+
+        sql = "insert into %s (%s) values (%s)" % (table, keys, values)
+
+        self.cursor.executemany(sql, data)
+        self.db.commit()
+
+
+
 
 class Mongo:
     def __init__(self):
