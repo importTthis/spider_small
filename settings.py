@@ -10,7 +10,6 @@ REDIS_CONN = {
     'db': 1
 }
 
-
 # MYSQL_TABLE = "jd_bad_review"
 MYSQL_TABLE = "jd_praise"
 
